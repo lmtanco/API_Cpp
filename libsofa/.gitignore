@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # This project specific ignores
-lib/*.sofa
+# lib/*.sofa
 lib/*.idb 
 lib/*.lib
 lib/*.exe
