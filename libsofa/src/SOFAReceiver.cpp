@@ -179,6 +179,12 @@ bool Receiver::HasReceiverViewVariable() const
 }
 
 bool Receiver::ReceiverPositionHasDimensions(const unsigned long dim1,
+    const unsigned long dim2) const
+{
+    return ReceiverPosition.HasDimensions(dim1, dim2);
+}
+
+bool Receiver::ReceiverPositionHasDimensions(const unsigned long dim1,
                                              const unsigned long dim2,
                                              const unsigned long dim3) const
 {
