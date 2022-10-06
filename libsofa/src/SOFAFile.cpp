@@ -923,11 +923,11 @@ bool File::checkTFDataType() const
     
     const netCDF::NcVarAtt attNLongName = sofa::NcUtils::GetAttribute( varN, "LongName" );
     
-    if( sofa::Units::IsValid( attNLongName ) == false )
-    {
-        SOFA_THROW( "invalid 'LongName'" );
-        return false;
-    }
+    //if( sofa::Units::IsValid( attNLongName ) == false )  // Is this a bug? LongName can be "frequency". Units::IsValid will not return this as Valid
+    //{
+    //    SOFA_THROW( "invalid 'LongName'" );
+    //    return false;
+    //}
     
     return true;
 }
