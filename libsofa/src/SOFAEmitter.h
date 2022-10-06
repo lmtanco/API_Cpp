@@ -84,6 +84,7 @@ namespace sofa
         bool HasEmitterUpVariable() const;
         bool HasEmitterViewVariable() const;
         
+        bool EmitterPositionHasDimensions(const unsigned long dim1, const unsigned long dim2) const; 
         bool EmitterPositionHasDimensions(const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool EmitterUpHasDimensions(const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool EmitterViewHasDimensions(const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;

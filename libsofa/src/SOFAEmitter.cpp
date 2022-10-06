@@ -179,6 +179,12 @@ bool Emitter::HasEmitterViewVariable() const
 }
 
 bool Emitter::EmitterPositionHasDimensions(const unsigned long dim1,
+    const unsigned long dim2) const
+{
+    return EmitterPosition.HasDimensions(dim1, dim2);
+}
+
+bool Emitter::EmitterPositionHasDimensions(const unsigned long dim1,
                                            const unsigned long dim2,
                                            const unsigned long dim3) const
 {
