@@ -691,7 +691,8 @@ bool File::checkEmitterVariables() const
     }
     
     if( emitter.EmitterPositionHasDimensions(  E,  C,  I ) == false
-       && emitter.EmitterPositionHasDimensions(  E,  C,  M ) == false )
+       && emitter.EmitterPositionHasDimensions(  E,  C,  M ) == false 
+       && emitter.EmitterPositionHasDimensions( I, C) == false)
     {
         SOFA_THROW( "invalid 'EmitterPosition' dimensions" );
         return false;
