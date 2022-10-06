@@ -52,6 +52,7 @@
     <ClCompile Include="..\..\src\SOFADate.cpp" />
     <ClCompile Include="..\..\src\SOFAEmitter.cpp" />
     <ClCompile Include="..\..\src\SOFAFile.cpp" />
+    <ClCompile Include="..\..\src\SOFAFreeFieldDirectivityTF.cpp" />
     <ClCompile Include="..\..\src\SOFAGeneralFIR.cpp" />
     <ClCompile Include="..\..\src\SOFAGeneralFIRE.cpp" />
     <ClCompile Include="..\..\src\SOFAGeneralTF.cpp" />
