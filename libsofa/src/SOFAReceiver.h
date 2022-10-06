@@ -83,6 +83,7 @@ namespace sofa
         bool HasReceiverUpVariable() const;
         bool HasReceiverViewVariable() const;
         
+        bool ReceiverPositionHasDimensions(const unsigned long dim1, const unsigned long dim2) const; 
         bool ReceiverPositionHasDimensions(const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool ReceiverUpHasDimensions(const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool ReceiverViewHasDimensions(const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;

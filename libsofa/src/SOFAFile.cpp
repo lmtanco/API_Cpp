@@ -592,6 +592,7 @@ bool File::checkReceiverVariables() const
     }
     
     if( receiver.ReceiverPositionHasDimensions(  R,  C,  I ) == false
+     && receiver.ReceiverPositionHasDimensions( R, C ) == false 
      && receiver.ReceiverPositionHasDimensions(  R,  C,  M ) == false )
     {
         SOFA_THROW( "invalid 'ReceiverPosition' dimensions" );
