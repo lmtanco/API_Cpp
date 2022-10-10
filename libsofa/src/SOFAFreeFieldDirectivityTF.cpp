@@ -206,45 +206,64 @@ bool FreeFieldDirectivityTF::IsValid() const
     }
     
     
-    // TODO: Check all the required fields for this convention. 
+    // Check all the required fields for this convention. 
+    // Source: 
+    // - SimpleFreeFieldHRTF - Sofaconventions.
+    //   Retrieved October 10, 2022, from https ://www.sofaconventions.org/mediawiki/index.php/SimpleFreeFieldHRTF
+    
+    // The number of emitters is 1
+    if( GetNumEmitters() != 1 )
+    {
+        SOFA_THROW( "invalid number of emitters" );
+        return false;
+    }
 
-    ///// The number of emitters is 1
-    //if( GetNumEmitters() != 1 )
-    //{
-    //    SOFA_THROW( "invalid number of emitters" );
-    //    return false;
-    //}
-    //
-    ///*
-    ///// SamplingRate is a scalar
-    //{
-    //    ///@n the AES69-2015 standard is not completely clear on that point.
-    //    /// I tend to think that Data.SamplingRate shall be a scalar in the SimpleFreeFieldHRIR convention
-    //    /// (sofaconventions.org confirms that), but it's not 100% clear
-    //    
-    //    if( VariableIsScalar( "Data.SamplingRate" ) == false )
-    //    {
-    //        SOFA_THROW( "invalid dimensionality for 'Data.SamplingRate'");
-    //        return false;
-    //    }
-    //    
-    //    if( HasVariableType( netCDF::NcType::nc_DOUBLE, "Data.SamplingRate") == false )
-    //    {
-    //        SOFA_THROW( "invalid type for 'Data.SamplingRate'" );
-    //        return false;
-    //    }
-    //}
-    // */
-    //
-    //if( checkListenerVariables() == false )
-    //{
-    //    return false;
-    //}
-    //
-    //
-    //SOFA_ASSERT( GetDimension( "I" ) == 1 );
-    //SOFA_ASSERT( GetDimension( "C" ) == 3 );
-     
+    // Check all the required fields for this convention. 
+    // Source: 
+    // - Majdak, P., Zotter, F., Brinkmann, F., De Muynke, J., Mihocic, M., Noisternig, M., Mihocic, M. (2022). 
+    //   Spatially Oriented Format for Acoustics 2.1: Introduction and Recent Advances. 
+    //   Journal of the Audio Engineering Society, 70(7/8), 565–584. https://doi.org/10.17743/jaes.2022.0026
+
+
+    // FINDMEOUT: Not sure why can't I call these directly. 
+    if (sofa::NetCDFFile::HasAttribute("SourceType") == false)
+    {
+        SOFA_THROW("missing SourceType");
+        return false;
+    }
+
+    if (sofa::NetCDFFile::HasAttribute("SourceManufacturer") == false)
+    {
+        SOFA_THROW("missing SourceManufacturer");
+        return false;
+    }
+
+    if (checkListenerVariables() == false)
+    {
+        return false;
+    }
+
+    if (HasVariable("ListenerView") == false)
+    {
+        SOFA_THROW("missing ListenerView");
+        return false; 
+    }
+    
+    if (checkSourceVariables() == false)
+    {
+        return false; 
+    }
+
+    if (HasVariable("SourceView") == false)
+    {
+        SOFA_THROW("SourceView");
+        return false; 
+    }
+
+    // TODO: check if the previous are enough to check validity of file.  
+    // Supposedly the attributes Reference to SourcePosition, SourceView, and SourceUp
+    // are also required but I am not sure about this. 
+      
     return true;
 }
 
