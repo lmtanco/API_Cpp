@@ -75,6 +75,7 @@ http://www.sofaconventions.org
 #include "../src/SOFAGeneralFIRE.h"
 #include "../src/SOFAGeneralTF.h"
 #include "../src/SOFASingleRoomDRIR.h"
+#include "../src/SOFAFreeFieldDirectivityTF.h"
 #include "../src/SOFAUnits.h"
 #include "../src/SOFAVersion.h"
 #include "../src/SOFAHelper.h"
