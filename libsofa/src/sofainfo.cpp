@@ -360,12 +360,20 @@ int main(int argc, char *argv[])
         output << std::endl << std::endl;
         output << std::endl << std::endl;
         output << std::endl << std::endl;
+
+        std::string dataType = theFile.GetAttributeValueAsString("DataType");
         
-        const sofa::SimpleFreeFieldHRIR hrir( filename );
+      //  theFile.Print
+
+
+        //output << 
+
+       // const sofa::SimpleFreeFieldHRIR hrir( filename );
+        const sofa::FreeFieldDirectivityTF directivity(filename);
         
-        const bool isHRIR = hrir.IsValid();
+        const bool isDirectivity = directivity.IsValid();
         
-        if( isHRIR == true )
+       /* if( isHRIR == true )
         {
             output << filename << " is a valid 'SimpleFreeFieldHRIR' file" << std::endl;
         }
@@ -438,7 +446,7 @@ int main(int argc, char *argv[])
                     }
                 }
             }
-        }
+        }*/
         
     }
     catch( std::exception &e )
