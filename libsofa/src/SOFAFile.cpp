@@ -591,8 +591,9 @@ bool File::checkReceiverVariables() const
         return false;
     }
     
+    // FIXME: This is mixing SOFA 1.0 and (partially) SOFA 2.0 
     if( receiver.ReceiverPositionHasDimensions(  R,  C,  I ) == false
-     && receiver.ReceiverPositionHasDimensions( R, C ) == false 
+     && receiver.ReceiverPositionHasDimensions( R, C ) == false // One of the SOFA 2.0 posibilities. The others are IC (not implemented) and RCM (implemented below). 
      && receiver.ReceiverPositionHasDimensions(  R,  C,  M ) == false )
     {
         SOFA_THROW( "invalid 'ReceiverPosition' dimensions" );
@@ -692,7 +693,7 @@ bool File::checkEmitterVariables() const
     
     if( emitter.EmitterPositionHasDimensions(  E,  C,  I ) == false
        && emitter.EmitterPositionHasDimensions(  E,  C,  M ) == false 
-       && emitter.EmitterPositionHasDimensions( I, C) == false)
+       && emitter.EmitterPositionHasDimensions( I, C) == false) // Sofa 2.0
     {
         SOFA_THROW( "invalid 'EmitterPosition' dimensions" );
         return false;
@@ -1414,6 +1415,11 @@ bool File::GetEmitterView(sofa::Coordinates::Type &coordinates, sofa::Units::Typ
     return File::get( coordinates, units, "EmitterView" ); 
 }
 
+bool File::GetReceiverPosition(double* values, const unsigned long dim1, const unsigned long dim2) const
+{
+    return NetCDFFile::GetValues(values, dim1, dim2, "ReceiverPosition");
+}
+
 bool File::GetReceiverPosition(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const
 {
     return NetCDFFile::GetValues( values, dim1, dim2, dim3, "ReceiverPosition" );
@@ -1427,6 +1433,11 @@ bool File::GetReceiverUp(double *values, const unsigned long dim1, const unsigne
 bool File::GetReceiverView(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const
 {
     return NetCDFFile::GetValues( values, dim1, dim2, dim3, "ReceiverView" );
+}
+
+bool File::GetEmitterPosition(double* values, const unsigned long dim1, const unsigned long dim2) const
+{
+    return NetCDFFile::GetValues(values, dim1, dim2, "EmitterPosition");
 }
 
 bool File::GetEmitterPosition(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const

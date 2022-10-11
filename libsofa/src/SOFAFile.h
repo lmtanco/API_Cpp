@@ -136,10 +136,12 @@ namespace sofa
         bool GetSourceUp(double *values, const unsigned long dim1, const unsigned long dim2) const;
         bool GetSourceView(double *values, const unsigned long dim1, const unsigned long dim2) const;
         
+        bool GetReceiverPosition(double* values, const unsigned long dim1, const unsigned long dim2) const; // Sofa 2.0
         bool GetReceiverPosition(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool GetReceiverUp(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool GetReceiverView(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         
+        bool GetEmitterPosition(double* values, const unsigned long dim1, const unsigned long dim2) const; // Sofa 2.0
         bool GetEmitterPosition(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool GetEmitterUp(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
         bool GetEmitterView(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
