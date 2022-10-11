@@ -71,6 +71,39 @@
     <ClCompile Include="..\..\src\SOFAString.cpp" />
     <ClCompile Include="..\..\src\SOFAUnits.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\SOFA.h" />
+    <ClInclude Include="..\..\src\SOFAAPI.h" />
+    <ClInclude Include="..\..\src\SOFAAttributes.h" />
+    <ClInclude Include="..\..\src\SOFACoordinates.h" />
+    <ClInclude Include="..\..\src\SOFADate.h" />
+    <ClInclude Include="..\..\src\SOFAEmitter.h" />
+    <ClInclude Include="..\..\src\SOFAExceptions.h" />
+    <ClInclude Include="..\..\src\SOFAFile.h" />
+    <ClInclude Include="..\..\src\SOFAFreeFieldDirectivityTF.h" />
+    <ClInclude Include="..\..\src\SOFAGeneralFIR.h" />
+    <ClInclude Include="..\..\src\SOFAGeneralFIRE.h" />
+    <ClInclude Include="..\..\src\SOFAGeneralTF.h" />
+    <ClInclude Include="..\..\src\SOFAHelper.h" />
+    <ClInclude Include="..\..\src\SOFAHostArchitecture.h" />
+    <ClInclude Include="..\..\src\SOFAListener.h" />
+    <ClInclude Include="..\..\src\SOFAMultiSpeakerBRIR.h" />
+    <ClInclude Include="..\..\src\SOFANcFile.h" />
+    <ClInclude Include="..\..\src\SOFANcUtils.h" />
+    <ClInclude Include="..\..\src\SOFAPlatform.h" />
+    <ClInclude Include="..\..\src\SOFAPoint3.h" />
+    <ClInclude Include="..\..\src\SOFAPosition.h" />
+    <ClInclude Include="..\..\src\SOFAReceiver.h" />
+    <ClInclude Include="..\..\src\SOFASimpleFreeFieldHRIR.h" />
+    <ClInclude Include="..\..\src\SOFASimpleFreeFieldSOS.h" />
+    <ClInclude Include="..\..\src\SOFASimpleHeadphoneIR.h" />
+    <ClInclude Include="..\..\src\SOFASingleRoomDRIR.h" />
+    <ClInclude Include="..\..\src\SOFASource.h" />
+    <ClInclude Include="..\..\src\SOFAString.h" />
+    <ClInclude Include="..\..\src\SOFAUnits.h" />
+    <ClInclude Include="..\..\src\SOFAUtils.h" />
+    <ClInclude Include="..\..\src\SOFAVersion.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BD65F1EB-AF1B-483F-8BF2-08C5AD7E9BC1}</ProjectGuid>
     <RootNamespace>libsofa</RootNamespace>
