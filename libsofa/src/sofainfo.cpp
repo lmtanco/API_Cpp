@@ -70,23 +70,41 @@ static void PrintEmitter(const sofa::File &theFile,
     std::vector< std::size_t > dims;
     theFile.GetVariableDimensions( dims, "EmitterPosition" );
     
-    SOFA_ASSERT( dims.size() == 3 );
+    SOFA_ASSERT( (dims.size() == 3) || (dims.size() == 2) );
     
     std::vector< double > pos;
-    pos.resize( dims[0] * dims[1] * dims[2] );
-    
-    theFile.GetEmitterPosition( &pos[0], dims[0], dims[1], dims[2] );
-    
-    output << sofa::String::PadWith( "EmitterPosition" ) << " = " ;
-    
-    for( std::size_t i = 0; i < dims[0]; i++ )
-    {
-        for( std::size_t j = 0; j < dims[1]; j++ )
+    if (dims.size() == 2) {
+        pos.resize(dims[0] * dims[1]);
+        theFile.GetEmitterPosition(&pos[0], dims[0], dims[1]);
+
+        output << sofa::String::PadWith("Emitter Position") << " = ";
+
+        for (std::size_t i = 0; i < dims[0]; i++)
         {
-            for( std::size_t k = 0; k < dims[2]; k++ )
+            for (std::size_t j = 0; j < dims[1]; j++)
             {
-                const std::size_t index = array3DIndex( i, j, k, dims[0], dims[1], dims[2] );
-                output << pos[ index ] << " ";
+                const std::size_t index = array2DIndex(i, j, dims[0], dims[1]);
+                output << pos[index] << " ";
+            }
+        }
+
+    }
+    else {// dim.size() == 3
+        pos.resize(dims[0] * dims[1] * dims[2]);
+
+        theFile.GetEmitterPosition(&pos[0], dims[0], dims[1], dims[2]);
+
+        output << sofa::String::PadWith("EmitterPosition") << " = ";
+
+        for (std::size_t i = 0; i < dims[0]; i++)
+        {
+            for (std::size_t j = 0; j < dims[1]; j++)
+            {
+                for (std::size_t k = 0; k < dims[2]; k++)
+                {
+                    const std::size_t index = array3DIndex(i, j, k, dims[0], dims[1], dims[2]);
+                    output << pos[index] << " ";
+                }
             }
         }
     }
@@ -114,26 +132,44 @@ static void PrintReceiver(const sofa::File &theFile,
     std::vector< std::size_t > dims;
     theFile.GetVariableDimensions( dims, "ReceiverPosition" );
     
-    SOFA_ASSERT( dims.size() == 3 );
+    SOFA_ASSERT( (dims.size() == 3) || (dims.size() == 2) );
     
     std::vector< double > pos;
-    pos.resize( dims[0] * dims[1] * dims[2] );
-    
-    theFile.GetReceiverPosition( &pos[0], dims[0], dims[1], dims[2] );
-    
-    output << sofa::String::PadWith( "ReceiverPosition" ) << " = " ;
-    
-    for( std::size_t i = 0; i < dims[0]; i++ )
-    {
-        for( std::size_t j = 0; j < dims[1]; j++ )
+    if (dims.size() == 2) {
+        pos.resize(dims[0] * dims[1]);
+        theFile.GetReceiverPosition(&pos[0], dims[0], dims[1]);
+
+        output << sofa::String::PadWith("ReceiverPosition") << " = ";
+
+        for (std::size_t i = 0; i < dims[0]; i++)
         {
-            for( std::size_t k = 0; k < dims[2]; k++ )
+            for (std::size_t j = 0; j < dims[1]; j++)
             {
-                const std::size_t index = array3DIndex( i, j, k, dims[0], dims[1], dims[2] );
-                output << pos[ index ] << " ";
+               const std::size_t index = array2DIndex(i, j, dims[0], dims[1]);
+               output << pos[index] << " ";
+            }
+        }
+
+    }
+    else {// dim.size() == 3
+        pos.resize(dims[0] * dims[1] * dims[2]);
+        theFile.GetReceiverPosition(&pos[0], dims[0], dims[1], dims[2]);
+
+        output << sofa::String::PadWith("ReceiverPosition") << " = ";
+
+        for (std::size_t i = 0; i < dims[0]; i++)
+        {
+            for (std::size_t j = 0; j < dims[1]; j++)
+            {
+                for (std::size_t k = 0; k < dims[2]; k++)
+                {
+                    const std::size_t index = array3DIndex(i, j, k, dims[0], dims[1], dims[2]);
+                    output << pos[index] << " ";
+                }
             }
         }
     }
+
     output << std::endl;
 }
 
@@ -382,58 +418,75 @@ int main(int argc, char *argv[])
             output << filename << " is not a valid 'SimpleFreeFieldHRIR' file" << std::endl;
             return 0;
         }
-        
-        double sr = 0.0;
-        const bool ok = hrir.GetSamplingRate( sr );
-        
-        SOFA_ASSERT( ok == true );
-        
-        sofa::Units::Type units;
-        hrir.GetSamplingRateUnits( units );
-        
-        output << sofa::String::PadWith( "Data.SamplingRate" ) << " = " << sr << std::endl;
-        output << sofa::String::PadWith( "Data.SamplingRate:Units" ) << " = " << sofa::Units::GetName( units ) << std::endl;
-        
-        const unsigned int M = (unsigned int) hrir.GetNumMeasurements();
-        const unsigned int R = (unsigned int) hrir.GetNumReceivers();
-        const unsigned int N = (unsigned int) hrir.GetNumDataSamples();
-        
-        /// change this according to your needs
-        const bool printListenerInfos   = true;
-        const bool printReceiverInfos   = true;
-        const bool printSourceInfos     = true;
-        const bool printEmitterInfos    = true;
-        const bool printData            = false;
-        
-        if( printListenerInfos == true )
+        */
+        if (isDirectivity == true)
         {
-            output << std::endl;
-            PrintListener( theFile, output );
+            output << filename << " is a valid 'FreeFieldDirectivityTF' file" << std::endl;
+        }
+        else
+        {
+            output << filename << " is not a valid 'FreeFieldDirectivityTF' file" << std::endl;
+            return 0;
         }
         
+           
+        //double sr = 0.0;
+        //const bool ok = directivity.GetSamplingRate( sr );
+        //
+        //SOFA_ASSERT( ok == true );
+        //
+        //sofa::Units::Type units;
+        //directivity.GetSamplingRateUnits( units );
+        //
+        //output << sofa::String::PadWith( "Data.SamplingRate" ) << " = " << sr << std::endl;
+        //output << sofa::String::PadWith( "Data.SamplingRate:Units" ) << " = " << sofa::Units::GetName( units ) << std::endl;
+        
+        // The FreeFieldDirectivityTF imposes differences to these dimensions with resepect to the main AES69:
+        const unsigned int R = (unsigned int) directivity.GetNumReceivers();
+        const unsigned int E = (unsigned int) directivity.GetNumEmitters();
+        const unsigned int M = (unsigned int) directivity.GetNumMeasurements();
+        const unsigned int N = (unsigned int) directivity.GetNumDataSamples();
+        
+        /// change this according to your needs
+        const bool printReceiverInfos = true;
+        const bool printEmitterInfos = true;
+        const bool printMeasurementInfos = true;
+        const bool printNumDataSamples   = true;
+        
+        //const bool printSourceInfos     = true;
+        //const bool printData            = false;
+        //
+
         if( printReceiverInfos == true )
         {
             output << std::endl;
             PrintReceiver( theFile, output );
         }
-        
-        if( printSourceInfos == true )
+        if (printEmitterInfos == true)
         {
             output << std::endl;
-            PrintSource( theFile, output );
+            PrintEmitter(theFile, output);
         }
+        //if( printMeasurementInfos == true )
+        //{
+        //output << std::endl;
+        //    PrintListener( theFile, output );
+        //}
+
+        //
+        //if( printSourceInfos == true )
+        //{
+        //    output << std::endl;
+        //    PrintSource( theFile, output );
+        //}
+        //
+
         
-        if( printEmitterInfos == true )
-        {
-            output << std::endl;
-            PrintEmitter( theFile, output );
-        }
-        
-        if( printData == true )
+        /*if( printData == true )
         {
             std::vector< double > data;
              
-            hrir.GetDataIR( data );
+            directivity.GetDataIR( data );
              
             for( std::size_t i = 0; i < M; i++ )
             {
