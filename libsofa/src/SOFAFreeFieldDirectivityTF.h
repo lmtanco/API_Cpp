@@ -76,6 +76,11 @@ namespace sofa
         virtual ~FreeFieldDirectivityTF() {};
         
         virtual bool IsValid() const SOFA_OVERRIDE;
+
+        virtual bool GetFrequencyValues(std::vector< double >& frequencies) const;
+        virtual bool GetDataReal(std::vector< double >& frequencies) const;
+        virtual bool GetDataImag(std::vector< double >& frequencies) const;
+
         
     private:
         ////==============================================================================

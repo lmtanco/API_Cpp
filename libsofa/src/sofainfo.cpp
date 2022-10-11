@@ -393,9 +393,6 @@ int main(int argc, char *argv[])
         theFile.PrintSOFADimensions( output , paddingForDisplay );
 
         output << std::endl << std::endl;
-        output << std::endl << std::endl;
-        output << std::endl << std::endl;
-        output << std::endl << std::endl;
 
         std::string dataType = theFile.GetAttributeValueAsString("DataType");
         
@@ -443,19 +440,15 @@ int main(int argc, char *argv[])
         
         // The FreeFieldDirectivityTF imposes differences to these dimensions with resepect to the main AES69:
         const unsigned int R = (unsigned int) directivity.GetNumReceivers();
-        const unsigned int E = (unsigned int) directivity.GetNumEmitters();
+        const unsigned int E = (unsigned int) directivity.GetNumEmitters(); 
         const unsigned int M = (unsigned int) directivity.GetNumMeasurements();
         const unsigned int N = (unsigned int) directivity.GetNumDataSamples();
         
         /// change this according to your needs
         const bool printReceiverInfos = true;
         const bool printEmitterInfos = true;
-        const bool printMeasurementInfos = true;
-        const bool printNumDataSamples   = true;
-        
-        //const bool printSourceInfos     = true;
-        //const bool printData            = false;
-        //
+        const bool printFrequencyInfos = true;
+        const bool printData            = true;       
 
         if( printReceiverInfos == true )
         {
@@ -467,27 +460,29 @@ int main(int argc, char *argv[])
             output << std::endl;
             PrintEmitter(theFile, output);
         }
-        //if( printMeasurementInfos == true )
-        //{
-        //output << std::endl;
-        //    PrintListener( theFile, output );
-        //}
-
-        //
-        //if( printSourceInfos == true )
-        //{
-        //    output << std::endl;
-        //    PrintSource( theFile, output );
-        //}
-        //
+        if( printFrequencyInfos == true )
+        {
+            // TODO: print N:LongName and N:Units
+            output << std::endl;
+            output << "Frequency Values (\"N\"): " << std::endl;
+            std::vector< double > frequencies;
+            directivity.GetFrequencyValues(frequencies);
+            for (std::size_t i = 0; i < N; i++)
+            {
+                output << frequencies[i] << " ";
+            }
+            output << std::endl;
+        }
 
         
-        /*if( printData == true )
+        if( printData == true )
         {
-            std::vector< double > data;
-             
-            directivity.GetDataIR( data );
-             
+            std::vector< double > data_real;
+            output << std::endl;
+            output << "Data.Real: [" << M << "x" << R << "x" << N << "]" << std::endl;
+            
+          directivity.GetDataReal(data_real);
+                       
             for( std::size_t i = 0; i < M; i++ )
             {
                 for( std::size_t j = 0; j < R; j++ )
@@ -495,11 +490,28 @@ int main(int argc, char *argv[])
                     for( std::size_t k = 0; k < N; k++ )
                     {
                         const std::size_t index = array3DIndex( i, j, k, M, R, N );
-                        output << data[ index ] << std::endl;
+                        output << data_real[index] << " ";
                     }
                 }
             }
-        }*/
+
+            std::vector< double > data_imag;
+            output << std::endl;
+            output << "Data.Imag: [" << M << "x" << R << "x" << N << "]" << std::endl;
+
+            directivity.GetDataImag(data_imag);
+            for( std::size_t i = 0; i < M; i++ )
+            {
+                for( std::size_t j = 0; j < R; j++ )
+                {
+                    for( std::size_t k = 0; k < N; k++ )
+                    {
+                        const std::size_t index = array3DIndex( i, j, k, M, R, N );
+                        output << data_imag[ index ] << " ";
+                    }
+                }
+            }
+        }
         
     }
     catch( std::exception &e )

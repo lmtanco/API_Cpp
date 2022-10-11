@@ -1676,6 +1676,48 @@ bool File::getSamplingRateUnits(sofa::Units::Type &units) const
 
 /************************************************************************************/
 /*!
+ *  @brief          Retrieves the Frequency Values of a 'TF' Data type 
+ *  @return         true on success
+ *
+ */
+ /************************************************************************************/
+bool File::getFrequencyValues(std::vector< double > & values) const
+{
+    SOFA_ASSERT(HasVariable("N") == true);
+
+    return NetCDFFile::GetValues(values, "N");
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Real values of a 'TF' Data type
+ *  @return         true on success
+ *
+ */
+ /************************************************************************************/
+bool File::getDataReal(std::vector< double >& values) const
+{
+    SOFA_ASSERT(HasVariable("Data.Real") == true);
+
+    return NetCDFFile::GetValues(values, "Data.Real");
+}
+
+/************************************************************************************/
+/*!
+ *  @brief          Retrieves the Data.Imag values of a 'TF' Data type
+ *  @return         true on success
+ *
+ */
+ /************************************************************************************/
+bool File::getDataImag(std::vector< double >& values) const
+{
+    SOFA_ASSERT(HasVariable("Data.Imag") == true);
+
+    return NetCDFFile::GetValues(values, "Data.Imag");
+}
+
+/************************************************************************************/
+/*!
  *  @brief          Throws an exception if the file does not contain the requested global attribute
  *
  */

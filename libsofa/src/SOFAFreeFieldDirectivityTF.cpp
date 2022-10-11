@@ -269,6 +269,52 @@ bool FreeFieldDirectivityTF::IsValid() const
 
 ///************************************************************************************/
 ///*!
+// *  @brief          Return "N", Frequency Values, which is of dimension [N] 
+// *  @return         true on success
+// *
+// */
+///************************************************************************************/
+bool FreeFieldDirectivityTF::GetFrequencyValues(std::vector< double >& frequencies) const
+{
+    // Frequency values. The variable is called "N" is [ N ] 
+
+    return sofa::File::getFrequencyValues(frequencies);
+
+}
+
+///************************************************************************************/
+///*!
+// *  @brief          Return Data.Real 
+// *  @return         true on success
+// *
+// */
+///************************************************************************************/
+bool FreeFieldDirectivityTF::GetDataReal(std::vector< double >& data_real) const
+{
+    // Data.Real is [ M R N ] 
+
+    return sofa::File::getDataReal(data_real);
+
+}
+
+///************************************************************************************/
+///*!
+// *  @brief          Return Data.Imag
+// *  @return         true on success
+// *
+// */
+///************************************************************************************/
+bool FreeFieldDirectivityTF::GetDataImag(std::vector< double >& data_imag) const
+{
+    // Data.Imag is [ M R N ] 
+
+    return sofa::File::getDataImag(data_imag);
+
+}
+
+
+///************************************************************************************/
+///*!
 // *  @brief          In case Data.SamplingRate is of dimension [I], this function returns
 // *                  its value. In case Data.SamplingRate is of dimension [M], an error is thrown
 // *  @return         true on success

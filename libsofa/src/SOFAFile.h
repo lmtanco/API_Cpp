@@ -197,6 +197,11 @@ namespace sofa
         bool isSamplingRateScalar() const;
         bool getSamplingRate(double &value) const;
         bool getSamplingRateUnits(sofa::Units::Type &units) const;
+
+        //==============================================================================
+        bool getFrequencyValues(std::vector< double >& values) const;
+        bool getDataReal(std::vector< double >& values) const;
+        bool getDataImag(std::vector< double >& values) const;
         
         //==============================================================================
         void ensureGlobalAttribute(const sofa::Attributes::Type &type_) const;
