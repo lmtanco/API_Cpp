@@ -77,17 +77,6 @@ namespace sofa
         
         virtual bool IsValid() const SOFA_OVERRIDE;
         
-        //bool GetSamplingRate(double &value) const;
-        //bool GetSamplingRateUnits(sofa::Units::Type &units) const;
-        //
-        ////==============================================================================
-        //bool GetDataIR(std::vector< double > &values) const;
-        //bool GetDataIR(double *values, const unsigned long dim1, const unsigned long dim2, const unsigned long dim3) const;
-        //
-        ////==============================================================================
-        //bool GetDataDelay(double *values, const unsigned long dim1, const unsigned long dim2) const;
-        //bool GetDataDelay(std::vector< double > &values) const;
-        
     private:
         ////==============================================================================
         bool checkGlobalAttributes() const;
