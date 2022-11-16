@@ -32,7 +32,7 @@ add_library(libsofa
 find_package(CURL REQUIRED)
 #no package for szip. 
 #find_package(SZIP REQUIRED)
-find_library(SZIP_LIB NAMES libsz.a)
+#find_library(SZIP_LIB NAMES libsz.a)
 find_library(Z_LIB 
     NAMES libz.a
     HINTS /usr/local/opt/zlib/lib
@@ -73,6 +73,6 @@ target_include_directories(libsofa
     PUBLIC ${NETCDF_LIB}
     PUBLIC ${NETCDF_CXX_LIB}
     PUBLIC ${CURL_LIBRARIES}
-    PUBLIC ${SZIP_LIB}
+  #  PUBLIC ${SZIP_LIB}
     PUBLIC ${Z_LIB}
  )
