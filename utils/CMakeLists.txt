@@ -13,7 +13,7 @@ target_link_libraries(sofainfo libsofa)
 target_link_libraries(sofamisc libsofa)
 
 # Some of the tests require json-c
-find_library(JSON_LIB NAMES libjson-c.a)
+find_library(JSON_LIB NAMES libjson-c.a json-c.lib)
 find_path(JSON_HEADERS NAMES json-c)
 
 #target_include_directories(json2sofa SYSTEM 

@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION 3.24)
-
+set(VCPKG_TARGET_TRIPLET x64-windows-static CACHE STRING "")
 project(libsofa LANGUAGES CXX)
 
 #option(BUILD_SHARED_LIBS "Building libsofa by default as STATIC" OFF)
