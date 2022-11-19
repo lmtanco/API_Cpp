@@ -92,7 +92,9 @@ find_path(NETCDF_CXX_HEADER NAMES ncFile.h)
 # Look for netcdf-cxx libraries
 # In MacOS compiled from master branch
 # of https://github.com/Unidata/netcdf-cxx4.git
-# changed in CMakeLists.txt BUILD_SHARED_LIBS to OFF
+# changed in CMakeLists.txt BUILD_SHARED_LIBS to OFF. 
+# In Windows had to use https://github.com/lakinwecker/netcdf-cxx4.git 
+# which worked out of the box with cmake. 
 find_library(NETCDF_CXX_LIB NAMES libnetcdf-cxx4.a netcdf-cxx4.lib)
 
 target_include_directories(libsofa SYSTEM # not sure SYSTEM is needed. 
