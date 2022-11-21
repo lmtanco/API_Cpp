@@ -47,9 +47,15 @@ add_library(libsofa
 # Alteratively git clone, cmake with BUILD_SHARED_LIBS=OFF, CMAKE_INSTALL_PREFIX=C:\extlibs (for example), then install
 # in Visual Studio by compiling the INSTALL visual studio project.
 # Then when configuring this library use the same path but with set(CMAKE_PREFIX_PATH C:\extlibs)
-find_library(CURL_LIBRARIES
-    NAMES libcurl.a libcurl.lib
-    HINTS ${CMAKE_PREFIX_PATH}/lib)
+find_package(CURL)
+if (NOT CURL_FOUND) 
+    find_library(CURL_LIBRARIES
+        NAMES libcurl.a libcurl.lib
+        HINTS ${CMAKE_PREFIX_PATH}/lib /usr/local/opt/curl/lib
+        )
+endif()
+
+
 
 # In MacOS removed SZIP depedndency (see below) 
 # find_library(SZIP_LIB NAMES libsz.a)
