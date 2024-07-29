@@ -80,7 +80,9 @@ find_library(HDF5_HL_LIB NAMES libhdf5_hl.a libhdf5_hl.lib)
 # Look for netcdf headers
 # In MacOS compiled from master branch 
 # of https://github.com/Unidata/netcdf-c.git 
-# In Windows git clone, git switch  cmake with BUILD_SHARED_LIBS=OFF, ENABLE_DAP=OFF, 
+# In Windows it's very hard to compile netcdf from source.
+# You need to have m4 installed and in your path. Download from https://gnuwin32.sourceforge.net/packages/m4.htm
+# git clone, cmake with BUILD_SHARED_LIBS=OFF, ENABLE_DAP=OFF, ENABLE_DAP2=OFF, ENABLE_DAP4=OFF, NETCDF_ENABLE_BYTERANGE=OFF
 # CMAKE_INSTALL_PREFIX=C:\extlibs (for example), then install
 # in Visual Studio by compiling the INSTALL visual studio project.
 find_path(NETCDF_HEADER NAMES netcdf.h)
